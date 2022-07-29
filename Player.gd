@@ -1,5 +1,7 @@
 extends Area2D
 
+signal hit
+
 export var speed = 400 # How fast the player will move (pixels/sec).
 var screen_size # Size of the game window.
 
@@ -43,12 +45,23 @@ func _process(delta):
 	else:
 		$AnimatedSprite.stop()
 		
-	hide()
+	#hide()
 		
 		
 
+func start(pos):
+	position = pos
+	show()
+	$CollisionShape2D.disabled = false
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
+
+
+func _on_Player_body_entered(body):
+	hide() # Player disappears after being hit.
+	emit_signal("hit")
+	# Must be deferred as we can't change physics properties on a physics callback.
+	$CollisionShape2D.set_deferred("disabled", true)
