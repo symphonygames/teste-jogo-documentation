@@ -24,6 +24,7 @@ radius = 54.0
 height = 30.0
 
 [node name="Player" type="Area2D"]
+position = Vector2( 35, 45 )
 scale = Vector2( 0.5, 0.5 )
 script = ExtResource( 5 )
 __meta__ = {
@@ -31,8 +32,11 @@ __meta__ = {
 }
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( -1, -0.25 )
+scale = Vector2( 0.981481, 1.0037 )
 frames = SubResource( 1 )
 animation = "up"
+frame = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 2 )
